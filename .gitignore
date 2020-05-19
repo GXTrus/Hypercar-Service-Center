@@ -123,3 +123,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+course-remote-info.yaml
+.idea/Hypercar Service Center.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+Hypercar Service Center/Client Menu/task-remote-info.yaml
+Hypercar Service Center/Electronic Queue/task-remote-info.yaml
+Hypercar Service Center/Operator Menu/task-remote-info.yaml
+Hypercar Service Center/Serving Next Client/task-remote-info.yaml
+Hypercar Service Center/Welcome/task-remote-info.yaml
+.idea/frameworkLessonHistory/storage.storageData
+.idea/frameworkLessonHistory/storage.storageRecordIndex
