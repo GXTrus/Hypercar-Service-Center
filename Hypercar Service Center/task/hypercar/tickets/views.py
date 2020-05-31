@@ -29,7 +29,9 @@ line_of_cars = LineOfCars()
 
 class WelcomeView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse('<h2>Welcome to the Hypercar Service!</h2><div><a href="/menu">Open Menu</a></div>')
+        return HttpResponse(
+            '<h2>Welcome to the Hypercar Service!</h2><div><a href="/menu">Open Menu</a></div><div><a '
+            'href="/processing">Processing</a></div>')
 
 
 my_links = {
@@ -48,7 +50,6 @@ class MenuView(View):
 
 
 class TicketView(View):
-
     def get(self, request, service, *args, **kwargs):
         car_list = line_of_cars.calculate()
         n_car = sum(car_list) + 1
@@ -60,4 +61,13 @@ class TicketView(View):
             n_minutes = car_list[0] * 2 + car_list[1] * 5 + car_list[2] * 30
         eval(f"line_of_cars.{service}({n_car})")
         response = f'<div>Your number is {n_car}</div>\n<div>Please wait around {n_minutes} minutes'
+        return HttpResponse(response)
+
+
+class ProcessingView(View):
+    def get(self, request, *args, **kwargs):
+        response = f'<div>Change oil queue: {len(line_of_cars.change_oil_cars)}</div>'
+        response += f'<div>Inflate tires queue: {len(line_of_cars.inflate_tires_cars)}</div>'
+        response += f'<div>Get diagnostic queue: {len(line_of_cars.diagnostic_cars)}</div>'
+        response += """<form method="post"><br>{% csrf_token %}<button type="submit">Process next</button></form>"""
         return HttpResponse(response)
